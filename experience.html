@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience | Maissa Hammami</title>
+  <link rel="icon" type="image/x-icon" href="img/maissa.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #0a0a1a;
+      --bg-card: rgba(20, 20, 40, 0.8);
+      --accent-pink: #ff9fdb;
+      --accent-light-pink: #ffc2e9;
+      --accent-purple: #c29cff;
+      --accent-blue: #8ac6ff;
+      --text-primary: #ffffff;
+      --text-secondary: #d8c3ff;
+      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      --glow: 0 0 25px rgba(255, 159, 219, 0.4);
+      --card-glow: 0 0 30px rgba(255, 159, 219, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    .cosmic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    }
+
+    .cosmic-particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100vh) translateX(var(--drift));
+        opacity: 0;
+      }
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 159, 219, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-pink);
+      object-fit: cover;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-title {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      opacity: 0.9;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-pink);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .experience-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 5% 80px;
+      text-align: center;
+    }
+
+    .experience-hero h1 {
+      font-size: 4rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .generation-animation {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .experience-hero p {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+    }
+
+    /* Section */
+    .section {
+      padding: 100px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 60px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Experience Timeline */
+    .experience-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .experience-card {
+      background: var(--bg-card);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 159, 219, 0.2);
+      box-shadow: var(--card-glow);
+      transition: var(--transition);
+    }
+
+    .experience-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 50px rgba(255, 159, 219, 0.3);
+    }
+
+    .experience-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .experience-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 15px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 159, 219, 0.3);
+    }
+
+    .experience-info {
+      flex: 1;
+    }
+
+    .experience-title {
+      font-size: 1.8rem;
+      color: var(--accent-pink);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .experience-company {
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .experience-period {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    .experience-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .experience-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .tech-tag {
+      padding: 8px 18px;
+      background: rgba(255, 159, 219, 0.1);
+      border: 1px solid rgba(255, 159, 219, 0.3);
+      border-radius: 20px;
+      color: var(--accent-pink);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tech-tag:hover {
+      background: rgba(255, 159, 219, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(10, 10, 26, 0.95);
+      padding: 40px 5%;
+      border-top: 1px solid rgba(255, 159, 219, 0.1);
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .experience-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .experience-header {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cosmic-bg" id="cosmicBg"></div>
+
+  <!-- Updated header with Maissa's information -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="img/maissa.jpg" alt="Maissa Hammami" class="logo-img">
+      <div class="logo-text">
+        <span class="logo-name">Maissa Hammami</span>
+        <span class="logo-title">Cloud & DevOps Engineer</span>
+      </div>
+    </a>
+    
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- Updated hero section with Maissa's professional focus -->
+  <section class="experience-hero">
+    <div class="experience-hero-content">
+      <h1>Professional <span class="generation-animation">Experience</span></h1>
+      <p>Building innovative solutions in Cloud, DevOps, and Full Stack Development</p>
+    </div>
+  </section>
+
+  <!-- Updated experience details with Maissa's work history -->
+  <section class="section" id="experience">
+    <h2 class="section-title">Work Experience</h2>
+    <div class="experience-timeline">
+      
+      <!-- Poulina Group Holding -->
+      <div class="experience-card">
+        <div class="experience-content">
+          <div class="experience-header">
+            <img src="img/poulina.png" alt="Poulina Logo" class="experience-logo">
+            <div class="experience-info">
+              <h3 class="experience-title">
+                <i class="fas fa-code"></i>
+                Full Stack Developer
+              </h3>
+              <div class="experience-company">Poulina Group Holding</div>
+              <div class="experience-period">August 2025 - October 2025</div>
+            </div>
+          </div>
+          <p class="experience-description">
+            Developed a comprehensive health insurance management application using .NET Core API and Angular frontend. 
+            Implemented automated medical counter-visit workflows and claims management with CI/CD pipelines using Jenkins 
+            and Docker containerization for seamless deployment.
+          </p>
+          <div class="experience-technologies">
+            <span class="tech-tag"><i class="fas fa-code"></i> .NET Core</span>
+            <span class="tech-tag"><i class="fab fa-angular"></i> Angular</span>
+            <span class="tech-tag"><i class="fas fa-database"></i> SQL Server</span>
+            <span class="tech-tag"><i class="fab fa-docker"></i> Docker</span>
+            <span class="tech-tag"><i class="fas fa-code-branch"></i> Jenkins</span>
+            <span class="tech-tag"><i class="fas fa-server"></i> Microservices</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BNA Dashboard -->
+      <div class="experience-card">
+        <div class="experience-content">
+          <div class="experience-header">
+            <img src="img/bna.png" alt="BNA Logo" class="experience-logo">
+            <div class="experience-info">
+              <h3 class="experience-title">
+                <i class="fas fa-chart-line"></i>
+                Full Stack Developer
+              </h3>
+              <div class="experience-company">BNA (Banque Nationale Agricole)</div>
+              <div class="experience-period">August 2024 - September 2024</div>
+            </div>
+          </div>
+          <p class="experience-description">
+            Developed an internal web dashboard to view loan application statistics by region, type, and status. 
+            Created a responsive interface with role management (admin, agent) and deployed the application using Docker 
+            with comprehensive technical documentation.
+          </p>
+          <div class="experience-technologies">
+            <span class="tech-tag"><i class="fab fa-angular"></i> Angular</span>
+            <span class="tech-tag"><i class="fas fa-leaf"></i> Spring Boot</span>
+            <span class="tech-tag"><i class="fas fa-database"></i> PostgreSQL</span>
+            <span class="tech-tag"><i class="fab fa-docker"></i> Docker</span>
+            <span class="tech-tag"><i class="fas fa-chart-bar"></i> Data Visualization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sagemcom -->
+      <div class="experience-card">
+        <div class="experience-content">
+          <div class="experience-header">
+            <img src="img/sagemcom.png" alt="Sagemcom Logo" class="experience-logo">
+            <div class="experience-info">
+              <h3 class="experience-title">
+                <i class="fas fa-industry"></i>
+                Full Stack Developer
+              </h3>
+              <div class="experience-company">Sagemcom, Ezzahra</div>
+              <div class="experience-period">July 2024 - August 2024</div>
+            </div>
+          </div>
+          <p class="experience-description">
+            Developed a system for tracking factory chassis components using barcode scanning with real-time status updates, 
+            email alerts, and complete traceability during production using Python, Django, and PostgreSQL.
+          </p>
+          <div class="experience-technologies">
+            <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-tag"><i class="fas fa-fire"></i> Django</span>
+            <span class="tech-tag"><i class="fas fa-database"></i> PostgreSQL</span>
+            <span class="tech-tag"><i class="fas fa-barcode"></i> Barcode Scanning</span>
+            <span class="tech-tag"><i class="fas fa-bell"></i> Real-time Alerts</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESPRIT -->
+      <div class="experience-card">
+        <div class="experience-content">
+          <div class="experience-header">
+            <img src="img/esprit.png" alt="ESPRIT Logo" class="experience-logo">
+            <div class="experience-info">
+              <h3 class="experience-title">
+                <i class="fas fa-robot"></i>
+                AI Developer
+              </h3>
+              <div class="experience-company">ESPRIT School of Engineering</div>
+              <div class="experience-period">July 2024 - August 2024</div>
+            </div>
+          </div>
+          <p class="experience-description">
+            Developed EspritBot, an intelligent chatbot for student guidance capable of answering frequently asked questions 
+            about registration, schedules, contact information, and internships. Integrated the chatbot into a student website 
+            with Angular and trained the model on real administrative data.
+          </p>
+          <div class="experience-technologies">
+            <span class="tech-tag"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="tech-tag"><i class="fab fa-angular"></i> Angular</span>
+            <span class="tech-tag"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="tech-tag"><i class="fas fa-brain"></i> AI/ML</span>
+            <span class="tech-tag"><i class="fas fa-comments"></i> Chatbot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Maissa Hammami. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function createCosmicBackground() {
+      const cosmicBg = document.getElementById('cosmicBg');
+      const particleCount = 40;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('cosmic-particle');
+        
+        const size = Math.random() * 12 + 3;
+        const startX = Math.random() * 100;
+        const drift = (Math.random() - 0.5) * 200;
+        const duration = Math.random() * 20 + 15;
+        const delay = Math.random() * 5;
+        
+        particle.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${startX}%;
+          --drift: ${drift}px;
+          animation-duration: ${duration}s;
+          animation-delay: ${delay}s;
+        `;
+        
+        cosmicBg.appendChild(particle);
+      }
+    }
+
+    createCosmicBackground();
+  </script>
+</body>
+</html>
